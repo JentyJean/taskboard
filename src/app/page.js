@@ -40,12 +40,12 @@ export default function Home() {
     console.log("After" + updatedTasks);  // 輸出添加後的任務列表
     setNewTask('');  // 清空輸入框
 
-    setNewId(nextId + 1);
+    setNextId(nextId + 1);
     localStorage.setItem('task', JSON.stringify(updatedTasks));
   };
 
-  const handleDelete = (index) => {
-    const newTasks = tasks.filter((_, i) => i !== index);
+  const handleDelete = (deleteId) => {
+    const newTasks = tasks.filter((task) => task.id !== deleteId); //index會因為array的增刪而變動，不穩定，改用id
     setTasks(newTasks); //把新的array重新傳入，重新渲染
     localStorage.setItem('task', JSON.stringify(newTasks));
   }
